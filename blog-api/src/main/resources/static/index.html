@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog API</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#faf9f6;color:#1a1a1a;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:780px;margin:0 auto;padding:0 2rem}
+nav{padding:2rem 0;display:flex;justify-content:space-between;align-items:center}
+.nav-name{font-family:'Fraunces',serif;font-size:1rem;color:#1a1a1a}
+.nav-status{display:flex;align-items:center;gap:6px;font-size:13px;color:#666}
+.dot{width:7px;height:7px;border-radius:50%;background:#22c55e}
+.hero{padding:5rem 0 4rem}
+.hero-eyebrow{font-size:13px;color:#666;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1.2rem}
+h1{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5vw,3.8rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.5rem;color:#1a1a1a}
+h1 em{font-style:italic;color:#e05c2a}
+.hero-sub{font-size:1.05rem;color:#555;line-height:1.75;max-width:500px;margin-bottom:2.5rem}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-main{background:#1a1a1a;color:#faf9f6;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:13px 26px;border-radius:40px;transition:background 0.2s,transform 0.15s;display:inline-block}
+.btn-main:hover{background:#333;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:#1a1a1a;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:13px 26px;border-radius:40px;border:1.5px solid #d4d0c8;transition:border-color 0.2s,transform 0.15s;display:inline-block}
+.btn-ghost:hover{border-color:#999;transform:translateY(-1px)}
+.divider{height:1px;background:#e8e4dc;margin:1rem 0}
+.how{padding:3.5rem 0}
+.section-label{font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:#999;margin-bottom:2rem}
+.steps{display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:48px 1fr;gap:0 1.5rem;padding:1.5rem 0;border-bottom:1px solid #e8e4dc}
+.step:last-child{border-bottom:none}
+.step-n{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;color:#e8e4dc;line-height:1;padding-top:4px}
+.step-title{font-size:15px;font-weight:500;margin-bottom:6px;color:#1a1a1a}
+.step-text{font-size:13.5px;color:#666;line-height:1.65}
+.snippet{margin-top:10px;background:#f0ede6;border-radius:8px;padding:10px 14px;font-family:monospace;font-size:12px;color:#555;line-height:1.7}
+.snippet .k{color:#e05c2a}
+.snippet .s{color:#2a6e3f}
+.endpoints{padding:3rem 0}
+.ep-list{display:flex;flex-direction:column;gap:6px}
+.ep{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:#fff;border:1px solid #e8e4dc;font-size:13.5px}
+.m{font-size:11px;font-weight:500;padding:3px 9px;border-radius:20px;min-width:46px;text-align:center}
+.GET{background:#e1f5ee;color:#0f6e56}
+.POST{background:#faeeda;color:#854f0b}
+.PUT{background:#e6f1fb;color:#185fa5}
+.DEL{background:#fcebeb;color:#a32d2d}
+.ep-path{color:#1a1a1a;flex:1}
+.ep-info{font-size:12px;color:#999}
+.stack-row{padding:2.5rem 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stack-item{font-size:12.5px;padding:5px 14px;border-radius:20px;background:#f0ede6;color:#555}
+footer{padding:2.5rem 0;border-top:1px solid #e8e4dc;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-by{font-size:13px;color:#999}
+.footer-by a{color:#1a1a1a;font-weight:500}
+.footer-link{font-size:13px;color:#e05c2a;font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <span class="nav-name">Blog API</span>
+    <span class="nav-status"><span class="dot"></span> online</span>
+  </nav>
+  <section class="hero">
+    <p class="hero-eyebrow">REST API · Java + Spring Boot</p>
+    <h1>Uma API de blog<br>feita do jeito <em>certo.</em></h1>
+    <p class="hero-sub">Autenticação JWT, CRUD de posts e comentários, controle de acesso por roles e documentação interativa. Tudo rodando ao vivo.</p>
+    <div class="hero-actions">
+      <a href="/swagger-ui/index.html" class="btn-main">Abrir documentação →</a>
+      <a href="https://github.com/joaopedrobagli/blog-api" target="_blank" class="btn-ghost">Ver código</a>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <section class="how">
+    <p class="section-label">Como testar</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">1</span>
+        <div>
+          <p class="step-title">Crie uma conta</p>
+          <p class="step-text">Na documentação, use <code>POST /api/auth/register</code> com seu usuário e senha.</p>
+          <div class="snippet"><span class="k">"username"</span>: <span class="s">"seu_nome"</span><br><span class="k">"email"</span>: <span class="s">"email@email.com"</span><br><span class="k">"password"</span>: <span class="s">"sua_senha"</span></div>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-n">2</span>
+        <div>
+          <p class="step-title">Copie o token</p>
+          <p class="step-text">A resposta retorna um token JWT. Copie o valor do campo <code>"token"</code>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-n">3</span>
+        <div>
+          <p class="step-title">Autorize e explore</p>
+          <p class="step-text">Clique em <strong>Authorize</strong> no topo do Swagger, cole o token e teste todos os endpoints livremente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <section class="endpoints">
+    <p class="section-label">Endpoints</p>
+    <div class="ep-list">
+      <div class="ep"><span class="m POST">POST</span><span class="ep-path">/api/auth/register</span><span class="ep-info">criar conta</span></div>
+      <div class="ep"><span class="m POST">POST</span><span class="ep-path">/api/auth/login</span><span class="ep-info">autenticar</span></div>
+      <div class="ep"><span class="m GET">GET</span><span class="ep-path">/api/posts</span><span class="ep-info">listar posts</span></div>
+      <div class="ep"><span class="m POST">POST</span><span class="ep-path">/api/posts</span><span class="ep-info">criar post</span></div>
+      <div class="ep"><span class="m PUT">PUT</span><span class="ep-path">/api/posts/{id}</span><span class="ep-info">editar post</span></div>
+      <div class="ep"><span class="m DEL">DEL</span><span class="ep-path">/api/posts/{id}</span><span class="ep-info">deletar post</span></div>
+      <div class="ep"><span class="m POST">POST</span><span class="ep-path">/api/posts/{id}/comments</span><span class="ep-info">comentar</span></div>
+      <div class="ep"><span class="m GET">GET</span><span class="ep-path">/api/posts/{id}/comments</span><span class="ep-info">listar comentários</span></div>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <div class="stack-row">
+    <span class="stack-item">Java 25</span>
+    <span class="stack-item">Spring Boot</span>
+    <span class="stack-item">Spring Security</span>
+    <span class="stack-item">JWT</span>
+    <span class="stack-item">PostgreSQL</span>
+    <span class="stack-item">Docker</span>
+    <span class="stack-item">JUnit</span>
+    <span class="stack-item">Swagger</span>
+  </div>
+  <footer>
+    <p class="footer-by">Desenvolvido por <a href="https://joaopedrobagli.netlify.app" target="_blank">João Pedro Bagli</a></p>
+    <a href="https://github.com/joaopedrobagli/blog-api" target="_blank" class="footer-link">GitHub →</a>
+  </footer>
+</div>
+</body>
+</html>

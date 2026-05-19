@@ -1,9 +1,7 @@
 package com.joaobagli.blog_api.dto.post;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
 
-@Data
 public class PostRequest {
 
     @NotBlank
@@ -11,4 +9,9 @@ public class PostRequest {
 
     @NotBlank
     private String content;
+
+    public String getTitle() { return title; }
+    public String getContent() { return content; }
+    public void setTitle(String title) { this.title = title; }
+    public void setContent(String content) { this.content = content; }
 }

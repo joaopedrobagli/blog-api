@@ -1,8 +1,8 @@
 package com.joaobagli.blog_api.config;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -21,11 +21,15 @@ import com.joaobagli.blog_api.repository.UserRepository;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
 
     private final UserRepository userRepository;
     private final JwtAuthFilter jwtAuthFilter;
+
+    public SecurityConfig(UserRepository userRepository, @Lazy JwtAuthFilter jwtAuthFilter) {
+        this.userRepository = userRepository;
+        this.jwtAuthFilter = jwtAuthFilter;
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -40,8 +44,7 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService());
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService());
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }

@@ -1,6 +1,6 @@
 package com.joaobagli.blog_api.repository;
 
-import com.joaobagli.blogapi.entity.User;
+import com.joaobagli.blog_api.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
